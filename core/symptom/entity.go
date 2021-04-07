@@ -10,6 +10,7 @@ CREATE TABLE symptoms (
 		description varchar(255),
 		type INT NOT NULL,
 		happened_at timestamp NOT NULL,
+		default boolean,
 		duration int,
 		observation varchar(255),
 		CONSTRAINT fk_customer
@@ -24,6 +25,7 @@ type Symptom struct {
 	Name string `json:"name"`
 	Description string `json:"description"`
 	Type SymptomType `json:"type"`
+	Default bool `json:"default"`
 	HappenedAt time.Time `json:"happenedAt"`
 	Duration time.Duration `json:"duration"`
 	Observation string `json:"observation"`
