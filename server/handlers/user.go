@@ -9,8 +9,6 @@ import (
 	"github.com/larissavarjao/sintomas-api/core/user"
 )
 
-
-
 func UsersHandlers(r *mux.Router, n *negroni.Negroni, service user.UseCase) {
 	r.Handle("/users", n.With(
 		negroni.Wrap(getAllUsers(service)),

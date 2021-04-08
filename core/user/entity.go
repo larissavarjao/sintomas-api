@@ -1,5 +1,7 @@
 package user
 
+import uuid "github.com/satori/go.uuid"
+
 /* 1. BANCO DE DADOS - TABELA DE USUARIOS
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -16,7 +18,7 @@ CREATE TABLE users (
 */
 
 type User struct {
-	ID    string     `json:"id"`
+	ID    uuid.UUID     `json:"id"`
 	FirstName  string    `json:"firstName"`
 	LastName  string  `json:"lastName"`
 	Password  string  `json:"password"`

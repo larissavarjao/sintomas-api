@@ -1,25 +1,41 @@
 package pacient
 
-import "time"
+import (
+	"time"
+
+	uuid "github.com/satori/go.uuid"
+)
 
 /* 2. BANCO DE DADOS - TABELA DE PACIENTES
 
 CREATE TABLE pacients (
     id uuid PRIMARY KEY NOT NULL DEFAULT uuid_generate_v4(),
     first_name varchar(100) NOT NULL,
-    last_name varchar(100),
-		type INT,
-		gender INT,
-		date_of_birth TIMESTAMP,
-		CONSTRAINT user_id
-				FOREIGN KEY(id)
-						REFERENCES users(id)
+    last_name varchar(100) NOT NULL,
+    type INT NOT NULL,
+    gender INT NOT NULL,
+    date_of_birth TIMESTAMP NOT NULL,
+    user_id uuid NOT NULL,
+    CONSTRAINT user_id
+        FOREIGN KEY(user_id)
+            REFERENCES users(id)
+);
+
+INSERT INTO symptoms(name, description, type, happened_at, custom, duration, observation, pacient_id) values (
+    'Caquexia',
+    'Description',
+    1,
+    NOW(),
+    false,
+    10,
+    'Observation',
+    '71bcd242-be3b-43fb-b3a9-e5280037b0f0'
 );
 
 */
 
 type Pacient struct {
-	ID    int64     `json:"id"`
+	ID    uuid.UUID     `json:"id"`
 	FirstName  string    `json:"firstName"`
 	LastName  string  `json:"lastName"`
 	UserID  string  `json:"userID"`
