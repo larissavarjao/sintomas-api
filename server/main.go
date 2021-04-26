@@ -10,6 +10,7 @@ import (
 
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
+	"github.com/larissavarjao/sintomas-api/core/pacient"
 	"github.com/larissavarjao/sintomas-api/core/symptom"
 	"github.com/larissavarjao/sintomas-api/core/user"
 	"github.com/larissavarjao/sintomas-api/server/handlers"
@@ -34,6 +35,7 @@ func main() {
 
 	defer db.Close()
 	userService := user.NewService(db)
+	pacientService := pacient.NewService(db)
 	symptomService := symptom.NewService(db)
 
 	r := mux.NewRouter()
@@ -42,6 +44,7 @@ func main() {
 	)
 
 	handlers.UsersHandlers(r, n, userService)
+	handlers.PacientsHandlers(r, n, pacientService)
 	handlers.SymptomsHandlers(r, n, symptomService)
 
 	http.Handle("/", r)

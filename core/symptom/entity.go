@@ -30,7 +30,7 @@ type Symptom struct {
 	Name string `json:"name"`
 	Description string `json:"description"`
 	Type SymptomType `json:"type"`
-	Custom bool `json:"default"`
+	Custom bool `json:"custom"`
 	HappenedAt time.Time `json:"happenedAt"`
 	Duration time.Duration `json:"duration"`
 	Observation string `json:"observation"`
