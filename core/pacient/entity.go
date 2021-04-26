@@ -35,11 +35,11 @@ INSERT INTO symptoms(name, description, type, happened_at, custom, duration, obs
 */
 
 type Pacient struct {
-	ID    uuid.UUID     `json:"id"`
+	ID      uuid.UUID     `json:"id"`
 	FirstName  string    `json:"firstName"`
 	LastName  string  `json:"lastName"`
 	UserID  string  `json:"userID"`
-	Type PacientType `json:"pacientType"`
+	Type PacientType `json:"type"`
 	Gender GenderType `json:"gender"`
 	DateOfBirth time.Time `json:"dateOfBirth"`
 }
