@@ -6,7 +6,7 @@ import (
 
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
-	"github.com/larissavarjao/sintomas-api/core/symptom"
+	"github.com/larissavarjao/sintomas-api/api/symptom"
 )
 
 func SymptomsHandlers(r *mux.Router, n *negroni.Negroni, s symptom.UseCase) {

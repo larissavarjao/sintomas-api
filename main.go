@@ -10,10 +10,11 @@ import (
 
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
-	"github.com/larissavarjao/sintomas-api/core/pacient"
-	"github.com/larissavarjao/sintomas-api/core/symptom"
-	"github.com/larissavarjao/sintomas-api/core/user"
-	"github.com/larissavarjao/sintomas-api/server/handlers"
+	"github.com/larissavarjao/sintomas-api/api/pacient"
+	"github.com/larissavarjao/sintomas-api/api/symptom"
+	"github.com/larissavarjao/sintomas-api/api/user"
+	"github.com/larissavarjao/sintomas-api/handlers"
+	"github.com/larissavarjao/sintomas-api/middlewares"
 	_ "github.com/lib/pq"
 )
 
@@ -39,9 +40,9 @@ func main() {
 	symptomService := symptom.NewService(db)
 
 	r := mux.NewRouter()
-	n := negroni.New(
-		negroni.NewLogger(),
-	)
+	n := negroni.New()
+	n.Use(negroni.NewLogger())
+	n.Use(middlewares.ValidateAuthentication())
 
 	handlers.UsersHandlers(r, n, userService)
 	handlers.PacientsHandlers(r, n, pacientService)

@@ -8,6 +8,9 @@ import (
 
 type UseCase interface {
 	GetAll() ([]*User, error)
+	Register(*User) (*User, error)
+	Login(email *string, password *string) (*User, error)
+	Me() (*User, error)
 }
 
 type Service struct {
@@ -42,4 +45,16 @@ func (s *Service) GetAll() ([]*User, error) {
 	}
 
 	return result, nil
+}
+
+func (s *Service) Register(newUser *User) (*User, error) {
+	return nil, nil
+}
+
+func (s *Service) Login(email *string, password *string) (*User, error) {
+	return nil, nil
+}
+
+func (s *Service) Me() (*User, error) {
+	return nil, nil
 }

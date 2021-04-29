@@ -6,16 +6,16 @@ import (
 
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
-	"github.com/larissavarjao/sintomas-api/core/user"
+	"github.com/larissavarjao/sintomas-api/api/pacient"
 )
 
-func UsersHandlers(r *mux.Router, n *negroni.Negroni, service user.UseCase) {
-	r.Handle("/users", n.With(
-		negroni.Wrap(getAllUsers(service)),
+func PacientsHandlers(r *mux.Router, n *negroni.Negroni, service pacient.UseCase) {
+	r.Handle("/pacients", n.With(
+		negroni.Wrap(getAllPacients(service)),
 	)).Methods("GET", "OPTIONS")
 }
 
-func getAllUsers(service user.UseCase) http.Handler {
+func getAllPacients(service pacient.UseCase) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
